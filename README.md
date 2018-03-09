@@ -30,7 +30,7 @@ v.2
 
 ```
 /acmd - список команд
-/pk id - установить игроку Player Kill. (/jail ID 60 PK`ed)
+/pk id - установить игроку Player Kill. (/jail ID 60 PK`ed + /aheal)
 /gh id - телепортация игрока к себе с поднятием из стадии (/aheal + /gethere)
 /as id - спавн игрока с поднятием из стадии (/aspawn + /aheal)
 /ah id - быстрый /aheal
