@@ -182,7 +182,7 @@ function punishDraw()
 			table.remove(punish, 1)
 		end
 				local x = 5
-				local y = posY/1.50
+				local y = posY/1.53
 				for _, v in ipairs(punish) do
 					renderFontDrawText(font, v, x, y, 0xFFA1020D)
 					y = y + 20
