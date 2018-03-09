@@ -11,6 +11,7 @@
 ### Требования
 
 - moonloader v.025
+- SAMPFUNCS 5.3+
 - lib: SAMP.events, sha1, basexx 
 
 ## Функции
