@@ -85,13 +85,13 @@ end
 			if sampIsDialogActive() then
 			did = sampGetCurrentDialogId()
 				if did == 184 then
-					if apass ~= nil then
+					if apass ~= '' then
 					sampSendDialogResponse(184, 1, 0, apass)
 					sampCloseCurrentDialogWithButton(0)
 					wait(5000)
 					end
 				elseif did == 0 then
-					if pass ~= nil then
+					if pass ~= '' then
 						sampSendDialogResponse(0, 1, 0, pass)
 						wait(5000)
 					end
@@ -108,16 +108,6 @@ end
 
 function commandList()
 	sampShowDialog(228, "GRPAdmin | Команды", "/acmd - список команд\n/pk - установить игроку Player Kill\n/gh - телепортировать игрока к себе и поднять\n/as - спавн игрока и поднять\n/ah - быстрый /aheal\n/hp - установить игроку 100 HP\n", "Закрыть", "", DIALOG_STYLE_MSGBOX)
-end
-
-function nameTagOn()
-	local pStSet = sampGetServerSettingsPtr()
-	NTdist = mem.getfloat(pStSet + 39)
-	NTwalls = mem.getint8(pStSet + 47)
-	NTshow = mem.getint8(pStSet + 56)
-	mem.setfloat(pStSet + 39, 1488.0)
-	mem.setint8(pStSet + 47, 0)
-	mem.setint8(pStSet + 56, 1)
 end
 
 function pk(id)
@@ -219,7 +209,7 @@ function main()
 	if not isSampfuncsLoaded() or not isSampLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 	--if sname ~= "Gambit Role Play" then return end
-	sampAddChatMessage("{3C519A}[GRPAdmin] {FFFFFF}Загружен. Список команд - {3C519A}/acmd", - 1)
+	sampAddChatMessage("{3C519A}[GRPAdmin by Nishikinov] {FFFFFF}Загружен. Список команд - {3C519A}/acmd", - 1)
 	sampRegisterChatCommand("acmd", commandList)
 	sampRegisterChatCommand("apos", mouse)
 	sampRegisterChatCommand("pk", pk)
