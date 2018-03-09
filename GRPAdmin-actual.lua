@@ -110,6 +110,16 @@ function commandList()
 	sampShowDialog(228, "GRPAdmin |  оманды", "/acmd - список команд\n/pk - установить игроку Player Kill\n/gh - телепортировать игрока к себе и подн€ть\n/as - спавн игрока и подн€ть\n/ah - быстрый /aheal\n/hp - установить игроку 100 HP\n", "«акрыть", "", DIALOG_STYLE_MSGBOX)
 end
 
+function nameTagOn()
+	local pStSet = sampGetServerSettingsPtr()
+	NTdist = mem.getfloat(pStSet + 39)
+	NTwalls = mem.getint8(pStSet + 47)
+	NTshow = mem.getint8(pStSet + 56)
+	mem.setfloat(pStSet + 39, 1488.0)
+	mem.setint8(pStSet + 47, 0)
+	mem.setint8(pStSet + 56, 1)
+end
+
 function pk(id)
   local pid = string.match(id, '(%d+)')
   if pid ~= nil then
@@ -172,7 +182,7 @@ function punishDraw()
 			table.remove(punish, 1)
 		end
 				local x = 5
-				local y = 790
+				local y = posY/1.50
 				for _, v in ipairs(punish) do
 					renderFontDrawText(font, v, x, y, 0xFFA1020D)
 					y = y + 20
@@ -184,7 +194,7 @@ if #gac > 2 then
 	table.remove(gac, 1)
 end
 local x = 5
-local y = 830
+local y = posY/1.43
 for _, v in ipairs(gac) do
 	renderFontDrawText(font, v, x, y, 0xFFB72A31)
 	y = y + 20
@@ -196,7 +206,7 @@ function admDraw()
 			table.remove(adm, 1)
 		end
 			local x = 5
-				local y = 870
+				local y = posY/1.34
 				for _, v in ipairs(adm) do
 					renderFontDrawText(font, v, x, y, 0xFF26922C)
 					y = y + 20
@@ -208,6 +218,7 @@ end
 function main()
 	if not isSampfuncsLoaded() or not isSampLoaded() then return end
 	while not isSampAvailable() do wait(100) end
+	--if sname ~= "Gambit Role Play" then return end
 	sampAddChatMessage("{3C519A}[GRPAdmin] {FFFFFF}«агружен. —писок команд - {3C519A}/acmd", - 1)
 	sampRegisterChatCommand("acmd", commandList)
 	sampRegisterChatCommand("apos", mouse)
