@@ -8,8 +8,8 @@
 
 ### Требования
 
-Moonloader v.025
-lib: SAMP.events, sha1, basexx 
+- moonloader v.025
+- lib: SAMP.events, sha1, basexx 
 
 ## Функции
 
