@@ -7,12 +7,12 @@ local sha1 = require "sha1"
 local basexx = require "basexx"
 local band = bit.band
 
---------------ПАРАМЕТРЫ АВТОЛОГИНА------
--- Пароль от аккаунта
+--------------AUTOLOGIN------
+-- Password
 pass = ''
--- Пароль администрирования
+-- Admin-password
 apass = ''
--- Секретный код Google Authenticator
+-- Secret key Google Authenticator
 asecret = ''
 ----------------------------------------
 
