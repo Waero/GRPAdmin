@@ -85,13 +85,13 @@ end
 			if sampIsDialogActive() then
 			did = sampGetCurrentDialogId()
 				if did == 184 then
-					if apass ~= nil then
+					if apass ~= '' then
 					sampSendDialogResponse(184, 1, 0, apass)
 					sampCloseCurrentDialogWithButton(0)
 					wait(5000)
 					end
 				elseif did == 0 then
-					if pass ~= nil then
+					if pass ~= '' then
 						sampSendDialogResponse(0, 1, 0, pass)
 						wait(5000)
 					end
@@ -172,7 +172,7 @@ function punishDraw()
 			table.remove(punish, 1)
 		end
 				local x = 5
-				local y = 790
+				local y = posY/1.53
 				for _, v in ipairs(punish) do
 					renderFontDrawText(font, v, x, y, 0xFFA1020D)
 					y = y + 20
@@ -184,7 +184,7 @@ if #gac > 2 then
 	table.remove(gac, 1)
 end
 local x = 5
-local y = 830
+local y = posY/1.43
 for _, v in ipairs(gac) do
 	renderFontDrawText(font, v, x, y, 0xFFB72A31)
 	y = y + 20
@@ -196,19 +196,26 @@ function admDraw()
 			table.remove(adm, 1)
 		end
 			local x = 5
-				local y = 870
+				local y = posY/1.34
 				for _, v in ipairs(adm) do
 					renderFontDrawText(font, v, x, y, 0xFF26922C)
 					y = y + 20
 				end
 end
 
+function imgui.OnDrawFrame()
+  imgui.Begin('My window') -- новое окно с заголовком 'My window'
+  imgui.Text('Hello world') -- простой текст внутри этого окна
+  imgui.End() -- конец окна
+end
+
 
 
 function main()
-	if not isSampfuncsLoaded() or not isSampLoaded() then return end
+	if not isSampLoaded() then return end
 	while not isSampAvailable() do wait(100) end
-	sampAddChatMessage("{3C519A}[GRPAdmin] {FFFFFF}Загружен. Список команд - {3C519A}/acmd", - 1)
+	--if sname ~= "Gambit Role Play" then return end
+	sampAddChatMessage("{3C519A}[GRPAdmin by Nishikinov] {FFFFFF}Загружен. Список команд - {3C519A}/acmd", - 1)
 	sampRegisterChatCommand("acmd", commandList)
 	sampRegisterChatCommand("apos", mouse)
 	sampRegisterChatCommand("pk", pk)
@@ -219,6 +226,7 @@ function main()
 	sampRegisterChatCommand("ak", ak)
 	posX, posY = getScreenResolution()
 	font = renderCreateFont("Tahoma", 10, 12)
+	imgui.Process = true
 	while true do
 		wait(0)
 			aLogin()
