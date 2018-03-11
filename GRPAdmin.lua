@@ -37,8 +37,8 @@ function sampev.onServerMessage(color, text)
 			table.insert(adm, text)
 			return false
 		elseif string.find(text, "[A] Вопрос", 1, true) then
-				tabIns(text)
-				table.insert(ask, text)
+				--tabIns(text)
+				--table.insert(ask, text)
 				return false
 		elseif string.find(text, "[G-AC]", 1, true) then
 			tabIns(text)
