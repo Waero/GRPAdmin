@@ -6,6 +6,7 @@ local mem = require "memory"
 local sha1 = require "sha1"
 local basexx = require "basexx"
 local band = bit.band
+
 --------------ПАРАМЕТРЫ АВТОЛОГИНА------
 -- Пароль от аккаунта
 pass = ''
@@ -26,10 +27,6 @@ function tabIns(text)
 	chatlog:write(os.date("[%H:%M:%S] ")..text.."\n")
 	chatlog:close()
 end
-
-local sha1 = require "sha1"
-local basexx = require "basexx"
-local band = bit.band
 
 function sampev.onServerMessage(color, text)
 		if string.find(text, "[A] Жалоба", 1, true) then
@@ -107,7 +104,7 @@ end
 	end
 
 function commandList()
-	sampShowDialog(228, "GRPAdmin | Команды", "/acmd - список команд\n/pk - установить игроку Player Kill\n/gh - телепортировать игрока к себе и поднять\n/as - спавн игрока и поднять\n/ah - быстрый /aheal\n/hp - установить игроку 100 HP\n", "Закрыть", "", DIALOG_STYLE_MSGBOX)
+	sampShowDialog(228, "GRPAdmin | Команды", "/acmd - список команд\n/pk - установить игроку Player Kill\n/gh - телепортировать игрока к себе и поднять\n/as - спавн игрока и поднять\n/ah - быстрый /aheal\n/hp - установить игроку 100 HP\n/ak - кикнуть за афк без паузы\n/gg - пожелать приятной игры\n/sl - уведомить о слежке", "Закрыть", "", DIALOG_STYLE_MSGBOX)
 end
 
 function pk(id)
@@ -167,6 +164,24 @@ function ak(id)
   end
 end
 
+function gg(id)
+local pid = string.match(id, '(%d+)')
+if pid ~= nil then
+sampSendChat('/ans '..pid..' Приятной игры.')
+else
+sampAddChatMessage("{3C519A}[GRPAdmin] {FFFFFF}/gg id - пожелать игроку приятной игры.", 0xC1C1C1)
+end
+end
+
+function sl(id)
+local pid = string.match(id, '(%d+)')
+if pid ~= nil then
+sampSendChat('/ans '..pid..' Слежу.')
+else
+sampAddChatMessage("{3C519A}[GRPAdmin] {FFFFFF}/sl id - Написать /ans id Слежу.", 0xC1C1C1)
+end
+end
+
 function punishDraw()
 	if #punish > 2 then
 			table.remove(punish, 1)
@@ -216,6 +231,8 @@ function main()
 	sampRegisterChatCommand("ah", ah)
 	sampRegisterChatCommand("hp", hp)
 	sampRegisterChatCommand("ak", ak)
+	sampRegisterChatCommand("sl", sl)
+	sampRegisterChatCommand("gg", gg)
 	posX, posY = getScreenResolution()
 	font = renderCreateFont("Tahoma", 10, 12)
 	while true do
