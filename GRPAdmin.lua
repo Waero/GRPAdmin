@@ -203,14 +203,6 @@ function admDraw()
 				end
 end
 
-function imgui.OnDrawFrame()
-  imgui.Begin('My window') -- новое окно с заголовком 'My window'
-  imgui.Text('Hello world') -- простой текст внутри этого окна
-  imgui.End() -- конец окна
-end
-
-
-
 function main()
 	if not isSampLoaded() then return end
 	while not isSampAvailable() do wait(100) end
@@ -226,7 +218,6 @@ function main()
 	sampRegisterChatCommand("ak", ak)
 	posX, posY = getScreenResolution()
 	font = renderCreateFont("Tahoma", 10, 12)
-	imgui.Process = true
 	while true do
 		wait(0)
 			aLogin()
